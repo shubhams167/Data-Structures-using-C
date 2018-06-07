@@ -54,7 +54,7 @@ void printList()
 	printf("\n\n");
 }
 
-//Insertion at beginning
+//Insertion at the beginning
 void insertBeg()
 {
 	struct node *newNode;
@@ -65,8 +65,25 @@ void insertBeg()
 	newNode->data = n;
 	newNode->next = start;
 	start = newNode;
-	printf("Succesfully inserted.\n")
+	printf("Insertion Success.\n\n");
 }
+
+//Insertion at the end
+void insertEnd()
+{
+	struct node *newNode,*ptr = start;
+	int n;
+	printf("\n\nEnter number to add: ");
+	scanf("%d",&n);
+	newNode = (struct node *)malloc(sizeof(struct node));
+	newNode->data = n;
+	newNode->next = NULL;
+	while(ptr->next !=NULL)
+		ptr = ptr->next;
+	ptr->next = newNode;
+	printf("Insertion Success.\n\n");
+}
+
 
 //Main function
 int main()
@@ -77,8 +94,10 @@ int main()
 		printf("*********MAIN MENU*********\n\n");
 		printf("1. Create a List\n");
 	 	printf("2. Display the list\n");
-		printf("3. Insert at beginning\n");
-		printf("4. EXIT\n");
+		printf("3. Insert at the beginning\n");
+		printf("4. Insert at the end\n");
+		printf("5. EXIT\n");
+		
 		printf("\nEnter your option: ");
 		scanf("%d",&option);		
 		switch(option)
@@ -86,7 +105,8 @@ int main()
 			case 1:	createList();break;
 			case 2: printList();break;
 			case 3: insertBeg();break;
+			case 4: insertEnd();break;
 		}
-	}while(option != 4);
+	}while(option != 5);
 	return 0;	
 }
