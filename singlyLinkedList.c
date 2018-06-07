@@ -16,7 +16,7 @@ void createList()
 {
 	struct node *newNode, *ptr;
 	int num;
-	printf("\n\nEnter -1 to end\nEnter number to add in list: ");
+	printf("\n\nEnter -1 to end\nEnter number to be added in list: ");
 	scanf("%d",&num);
 	while(num != -1)
 	{
@@ -35,7 +35,7 @@ void createList()
 			ptr->next = newNode; 	
 			ptr = ptr->next;
 		}
-		printf("Enter number to add in list: ");
+		printf("Enter number to be added in list: ");
 		scanf("%d",&num);
 	}
 	printf("Linked List created!\n\n\n");
@@ -59,7 +59,7 @@ void insertBeg()
 {
 	struct node *newNode;
 	int n;
-	printf("\n\nEnter number to add: ");
+	printf("\n\nEnter number to be added in list: ");
 	scanf("%d",&n);
 	newNode = (struct node *)malloc(sizeof(struct node));
 	newNode->data = n;
@@ -73,7 +73,7 @@ void insertEnd()
 {
 	struct node *newNode,*ptr = start;
 	int n;
-	printf("\n\nEnter number to add: ");
+	printf("\n\nEnter number to be added in list: ");
 	scanf("%d",&n);
 	newNode = (struct node *)malloc(sizeof(struct node));
 	newNode->data = n;
@@ -84,6 +84,31 @@ void insertEnd()
 	printf("Insertion Success.\n\n");
 }
 
+//Insertion before a value
+void insertBefore()
+{
+	struct node *newNode,*ptr = start,*temp_ptr;
+	int n,val;
+	printf("\nEnter number to be added in list: ");
+	scanf("%d",&n);
+	printf("Enter value before which number has to be added in list: ");
+	scanf("%d",&val);
+	newNode = (struct node *)malloc(sizeof(struct node));
+	newNode->data = n;
+	while(ptr->data != val)
+	{
+		temp_ptr = ptr;
+		ptr = ptr->next;
+	}
+	if(ptr == start)
+	{
+		printf("Insertion failed.\n\n");
+		return;
+	}
+	temp_ptr->next = newNode;
+	newNode->next = ptr;
+	printf("Insertion Success.\n\n");
+}
 
 //Main function
 int main()
@@ -96,7 +121,8 @@ int main()
 	 	printf("2. Display the list\n");
 		printf("3. Insert at the beginning\n");
 		printf("4. Insert at the end\n");
-		printf("5. EXIT\n");
+		printf("5. Insert before\n");
+		printf("6. EXIT\n");
 		
 		printf("\nEnter your option: ");
 		scanf("%d",&option);		
@@ -106,7 +132,8 @@ int main()
 			case 2: printList();break;
 			case 3: insertBeg();break;
 			case 4: insertEnd();break;
+			case 5: insertBefore();break;
 		}
-	}while(option != 5);
+	}while(option != 6);
 	return 0;	
 }
