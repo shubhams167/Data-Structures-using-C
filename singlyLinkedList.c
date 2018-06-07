@@ -12,7 +12,7 @@ struct node
 struct node *start = NULL;
 
 //Function to create linked list
-int createList()
+void createList()
 {
 	struct node *newNode, *ptr;
 	int num;
@@ -54,6 +54,20 @@ void printList()
 	printf("\n\n");
 }
 
+//Insertion at beginning
+void insertBeg()
+{
+	struct node *newNode;
+	int n;
+	printf("\n\nEnter number to add: ");
+	scanf("%d",&n);
+	newNode = (struct node *)malloc(sizeof(struct node));
+	newNode->data = n;
+	newNode->next = start;
+	start = newNode;
+	printf("Succesfully inserted.\n")
+}
+
 //Main function
 int main()
 {
@@ -63,14 +77,16 @@ int main()
 		printf("*********MAIN MENU*********\n\n");
 		printf("1. Create a List\n");
 	 	printf("2. Display the list\n");
-		printf("3. EXIT\n");
+		printf("3. Insert at beginning\n");
+		printf("4. EXIT\n");
 		printf("\nEnter your option: ");
 		scanf("%d",&option);		
 		switch(option)
 	 	{
 			case 1:	createList();break;
 			case 2: printList();break;
+			case 3: insertBeg();break;
 		}
-	}while(option != 3);
+	}while(option != 4);
 	return 0;	
 }
