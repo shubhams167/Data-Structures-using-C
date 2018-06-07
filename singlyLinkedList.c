@@ -26,15 +26,14 @@ int createList()
 			newNode->data = num;
 			newNode->next = NULL;
 			start = newNode;
+			ptr = start;
 		}
 		else
-		{		
-			ptr = start;			
-			while(ptr->next != NULL)	
-				ptr = ptr->next;
+		{					
 			newNode->data = num;
 			newNode->next = NULL;
-			ptr->next = newNode;
+			ptr->next = newNode; 	
+			ptr = ptr->next;
 		}
 		printf("Enter number to add in list: ");
 		scanf("%d",&num);
@@ -46,7 +45,7 @@ int createList()
 void printList()
 {
 	struct node *ptr = start;
-	printf("\n\nList: ")
+	printf("\n\nList: ");
 	while(ptr != NULL)
 	{
 		printf("%d ",ptr->data);
