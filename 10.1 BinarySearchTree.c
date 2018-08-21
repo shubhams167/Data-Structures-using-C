@@ -4,12 +4,12 @@
 *	such as find largest and smallest element in the tree, height of the tree, etc
 *	are available in this menu-driven program.
 *
-*	author: Shubham Singh
+*	Author: Shubham Singh
 *	Date: 11 Aug 2018
 */
 
 #include<stdio.h>
-#include<malloc.h>
+#include<stdlib.h>
 
 /*This structure represents a node or sub-tree in the BST*/
 typedef struct node
@@ -25,6 +25,7 @@ void inorderTraversal(NODE *);
 void postorderTraversal(NODE *);
 NODE *findSmallestElement(NODE *);
 NODE *findLargestElement(NODE *);
+NODE *deleteElement(NODE *, int);
 
 /*Main function of the program*/
 int main()
@@ -40,6 +41,7 @@ int main()
 		printf("4. Postorder traversal\n");
 		printf("5. Find the smallest element\n");
 		printf("6. Find the largest element\n");
+		printf("7. Delete element\n");
 		printf("14. Exit\n");
 		printf("Enter option: ");
 		scanf("%d", &option);
@@ -66,7 +68,12 @@ int main()
 						break;
 						
 			case 6:		printf("Largest element of tree is: %d", (findLargestElement(tree))->data);
-						break;						
+						break;	
+			
+			case 7:		printf("Enter value to delete from BST: ");
+						scanf("%d", &val);
+						tree = deleteElement(tree, val);
+						break;					
 						
 			case 14:	break; 
 		}
@@ -181,4 +188,69 @@ NODE *findLargestElement(NODE *tree)
 		return tree;
 	else
 		return findLargestElement(tree->right);
+}
+
+///*
+//*	FUNCTION:	This function deletes an element from the BST.
+//*	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val to delete.
+//*	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
+//*/
+//NODE *deleteElement(NODE *tree, int val)
+//{
+//	NODE *ptr = tree, *parentPtr = tree;
+//	while(ptr->data != val)
+//	{
+//		if(val >= ptr->data)
+//			ptr->right;
+//		else
+//			ptr->left;
+//	}
+//	/*When node to be deleted is a leaf node*/
+//	if(ptr->left == NULL && ptr->right == NULL)
+//	{
+//		while(!(parentPtr->left == ptr || parentPtr->right == ptr))
+//		{
+//			if(parentPtr->left == ptr)
+//				break;
+//			else
+//			if(parentPtr->right == ptr)
+//				break;	
+//		}
+//	}
+//}
+
+/*
+*	FUNCTION:	This function deletes an element from the BST.
+*	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val to delete.
+*	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
+*/
+NODE *deleteElement(NODE *tree, int val)
+{
+	if(tree == NULL)
+		printf("Value not found");
+	else 
+	if(val < tree->data)
+		deleteElement(tree->left, val);
+	else
+	if(val > tree->data)
+		deleteElement(tree->right, val);
+	else
+	if(tree->left && tree->right)
+	{
+		NODE *temp = findLargestElement(tree->left);
+		tree->data = temp->data;
+		deleteElement(tree->left, temp->data);
+	}
+	else
+	{
+		NODE *temp = tree;
+		if(tree->left == NULL && tree->right == NULL)
+			tree = NULL;
+		else
+		if(tree->left != NULL)
+			tree = tree->left;
+		else
+			tree = tree->right;
+		free(temp);
+	}
 }
