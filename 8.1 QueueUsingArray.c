@@ -1,10 +1,10 @@
-/*
-*	This program is an implementation of a queue built using array. Operations such 
-*	as insertion, deletion, peek and display are available in this menu-driven program.
-*
-*	Author: Shubham Singh
-*	Date: 21 Aug 2018
-*/
+/****************************************************************************************************
+*	This program is an implementation of a queue built using array. Operations such 				*
+*	as insertion, deletion, peek and display are available in this menu-driven program.				*
+*																									*	
+*	Author: Shubham Singh																			*
+*	Date: 21 Aug 2018																				*
+****************************************************************************************************/
 
 #include<stdio.h>
 

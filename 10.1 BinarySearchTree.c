@@ -1,12 +1,12 @@
-/*
-*	This program is an implementation a BST(Binary Search Tree) with operations such 
-*	as insertion, traversal( pre-order, in-order, post-order), deletion and few options
-*	such as find largest and smallest element in the tree, height of the tree, etc
-*	are available in this menu-driven program.
-*
-*	Author: Shubham Singh
-*	Date: 11 Aug 2018
-*/
+/************************************************************************************************
+*	This program is an implementation a BST(Binary Search Tree) with operations such			* 
+*	as insertion, traversal( pre-order, in-order, post-order), deletion and few options			*
+*	such as find largest and smallest element in the tree, height of the tree, etc				*
+*	are available in this menu-driven program.													*
+*																								*
+*	Author: Shubham Singh																		*
+*	Date: 11 Aug 2018																			*
+************************************************************************************************/
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -82,11 +82,11 @@ int main()
 	return 0;
 }
 
-/*
+/**************************************************************************************************************************************
 *	FUNCTION:	This function inserts an element into the BST.
 *	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val.
 *	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
-*/
+**************************************************************************************************************************************/
 NODE* insertElement(NODE *tree, int val)
 {
 	NODE *newTree = (NODE *)malloc(sizeof(NODE)), *node, *parentNode;
@@ -119,11 +119,11 @@ NODE* insertElement(NODE *tree, int val)
 	return tree;
 }
 
-/*
+/***************************************************************************************************************************************
 *	FUNCTION:	This function uses preorder traversal algorithm to traverse the BST.
 *	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
 *	OUTPUT:		none.
-*/
+***************************************************************************************************************************************/
 void preorderTraversal(NODE *tree)
 {
 	if(tree != NULL)
@@ -134,11 +134,11 @@ void preorderTraversal(NODE *tree)
 	}
 }
 
-/*
+/***************************************************************************************************************************************
 *	FUNCTION:	This function uses inorder traversal algorithm to traverse the BST.
 *	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
 *	OUTPUT:		none.
-*/
+***************************************************************************************************************************************/
 void inorderTraversal(NODE *tree)
 {
 	if(tree != NULL)
@@ -149,11 +149,11 @@ void inorderTraversal(NODE *tree)
 	}
 }
 
-/*
+/***************************************************************************************************************************************
 *	FUNCTION:	This function uses postorder traversal algorithm to traverse the BST.
 *	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
 *	OUTPUT:		none.
-*/
+***************************************************************************************************************************************/
 void postorderTraversal(NODE *tree)
 {
 	if(tree != NULL)
@@ -164,11 +164,11 @@ void postorderTraversal(NODE *tree)
 	}
 }
 
-/*
+/***************************************************************************************************************************************
 *	FUNCTION:	This function finds smallest element in the BST
 *	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
 *	OUTPUT:		This function returns pointer of type NODE pointing to the node of the smallest element of BST.
-*/
+***************************************************************************************************************************************/
 NODE *findSmallestElement(NODE *tree)
 {
 	if(tree == NULL || tree->left == NULL)
@@ -177,11 +177,11 @@ NODE *findSmallestElement(NODE *tree)
 		return findSmallestElement(tree->left);
 }
 
-/*
+/***************************************************************************************************************************************
 *	FUNCTION:	This function finds largest element in the BST
 *	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
 *	OUTPUT:		This function returns pointer of type NODE pointing to the node of the largest element of BST.
-*/
+***************************************************************************************************************************************/
 NODE *findLargestElement(NODE *tree)
 {
 	if(tree == NULL || tree->right == NULL)
@@ -190,11 +190,11 @@ NODE *findLargestElement(NODE *tree)
 		return findLargestElement(tree->right);
 }
 
-///*
+///***************************************************************************************************************************************
 //*	FUNCTION:	This function deletes an element from the BST.
 //*	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val to delete.
 //*	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
-//*/
+//***************************************************************************************************************************************/
 //NODE *deleteElement(NODE *tree, int val)
 //{
 //	NODE *ptr = tree, *parentPtr = tree;
@@ -219,11 +219,11 @@ NODE *findLargestElement(NODE *tree)
 //	}
 //}
 
-/*
+/***************************************************************************************************************************************
 *	FUNCTION:	This function deletes an element from the BST.
 *	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val to delete.
 *	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
-*/
+***************************************************************************************************************************************/
 NODE *deleteElement(NODE *tree, int val)
 {
 	if(tree == NULL)
