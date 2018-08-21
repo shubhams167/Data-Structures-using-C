@@ -1,11 +1,11 @@
 /************************************************************************************************
-*	This program is an implementation a BST(Binary Search Tree) with operations such			* 
-*	as insertion, traversal( pre-order, in-order, post-order), deletion and few options			*
-*	such as find largest and smallest element in the tree, height of the tree, etc				*
-*	are available in this menu-driven program.													*
-*																								*
-*	Author: Shubham Singh																		*
-*	Date: 11 Aug 2018																			*
+*	This program is an implementation a BST(Binary Search Tree) with operations such	* 
+*	as insertion, traversal( pre-order, in-order, post-order), deletion and few options	*
+*	such as find largest and smallest element in the tree, height of the tree, etc		*
+*	are available in this menu-driven program.						*
+*												*
+*	Author: Shubham Singh									*
+*	Date: 11 Aug 2018									*
 ************************************************************************************************/
 
 #include<stdio.h>
