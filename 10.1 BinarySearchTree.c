@@ -1,11 +1,11 @@
 /************************************************************************************************
-*	This program is an implementation a BST(Binary Search Tree) with operations such	* 
-*	as insertion, traversal( pre-order, in-order, post-order), deletion and few options	*
-*	such as find largest and smallest element in the tree, height of the tree, etc		*
-*	are available in this menu-driven program.						*
-*												*
-*	Author: Shubham Singh									*
-*	Date: 11 Aug 2018									*
+*	This program is an implementation a BST(Binary Search Tree) with operations such	
+*	as insertion, traversal( pre-order, in-order, post-order), deletion and few options	
+*	such as find largest and smallest element in the tree, height of the tree, etc		
+*	are available in this menu-driven program.						
+*												
+*	Author: Shubham Singh									
+*	Date: 11 Aug 2018									
 ************************************************************************************************/
 
 #include<stdio.h>
@@ -49,7 +49,7 @@ int main()
 		{
 			case 1:		printf("Enter value to insert in BST: ");
 						scanf("%d", &val);
-						tree = insertElement(tree, val);	//Insert val to BST
+						tree = insertElement(tree, val);
 						break;
 			
 			case 2:		printf("Elements of tree are:\n");
@@ -84,38 +84,22 @@ int main()
 
 /**************************************************************************************************************************************
 *	FUNCTION:	This function inserts an element into the BST.
-*	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val.
-*	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
+*	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST/sub-tree and an integer val.
+*	OUTPUT:		This function returns pointer of type NODE pointing to root of the sub-tree/BST.
 **************************************************************************************************************************************/
 NODE* insertElement(NODE *tree, int val)
 {
-	NODE *newTree = (NODE *)malloc(sizeof(NODE)), *node, *parentNode;
-	newTree->data = val;
-	newTree->left = NULL;
-	newTree->right = NULL;
 	if(tree == NULL)
 	{
-		tree = newTree;
-		tree->left = NULL;
-		tree->right = NULL;
+		tree = (NODE *)malloc(sizeof(NODE));
+		tree->data = val;
+		tree->left = tree->right = NULL;
 	}
 	else
-	{
-		node = tree;
-		parentNode = NULL;
-		while(node != NULL)
-		{
-			parentNode = node;
-			if(node->data > val)		
-				node = node->left;	//Value to be inserted is smaller than value at current node, go to left sub-tree
-			else
-				node = node->right;	//Value to be inserted is either greater than or equal to value at current node, go to right sub-tree
-		}
-		if(val < parentNode->data)	
-			parentNode->left = newTree;
-		else
-			parentNode->right = newTree;
-	}
+	if(val < tree->data)
+		tree->left = insertElement(tree->left, val);
+	else
+		tree->right = insertElement(tree->right, val);
 	return tree;
 }
 
