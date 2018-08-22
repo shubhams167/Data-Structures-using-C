@@ -26,12 +26,16 @@ void postorderTraversal(NODE *);
 NODE *findSmallestElement(NODE *);
 NODE *findLargestElement(NODE *);
 NODE *deleteElement(NODE *, int);
+int countTotalNodes(NODE *);
+int countInternalNodes(NODE *);
+int countExternalNodes(NODE *);
+
 
 /*Main function of the program*/
 int main()
 {
 	NODE *tree = NULL, *ptr = NULL;	//Create an empty BST
-	int option, val;
+	int option, val, count = 0;
 	do
 	{
 		printf("MAIN MENU\n");
@@ -42,6 +46,9 @@ int main()
 		printf("5. Find the smallest element\n");
 		printf("6. Find the largest element\n");
 		printf("7. Delete element\n");
+		printf("8. Count total number of nodes\n");
+		printf("9. Count total number of internal nodes\n");
+		printf("10. Count total number of external nodes\n");
 		printf("14. Exit\n");
 		printf("Enter option: ");
 		scanf("%d", &option);
@@ -73,9 +80,20 @@ int main()
 			case 7:		printf("Enter value to delete from BST: ");
 						scanf("%d", &val);
 						tree = deleteElement(tree, val);
-						break;					
-						
+						break;				
+			
+			case 8:		printf("Total number of nodes: %d\n", countTotalNodes(tree));
+						break;
+			
+			case 9:		printf("Total number of internal nodes: %d\n", countInternalNodes(tree));
+						break;
+			
+			case 10:	printf("Total number of external nodes: %d\n", countExternalNodes(tree));
+						break;
+					
 			case 14:	break; 
+			
+			default:	printf("Invalid option!\n");
 		}
 		printf("\n");
 	}while(option != 14);
@@ -174,35 +192,6 @@ NODE *findLargestElement(NODE *tree)
 		return findLargestElement(tree->right);
 }
 
-///***************************************************************************************************************************************
-//*	FUNCTION:	This function deletes an element from the BST.
-//*	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val to delete.
-//*	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
-//***************************************************************************************************************************************/
-//NODE *deleteElement(NODE *tree, int val)
-//{
-//	NODE *ptr = tree, *parentPtr = tree;
-//	while(ptr->data != val)
-//	{
-//		if(val >= ptr->data)
-//			ptr->right;
-//		else
-//			ptr->left;
-//	}
-//	/*When node to be deleted is a leaf node*/
-//	if(ptr->left == NULL && ptr->right == NULL)
-//	{
-//		while(!(parentPtr->left == ptr || parentPtr->right == ptr))
-//		{
-//			if(parentPtr->left == ptr)
-//				break;
-//			else
-//			if(parentPtr->right == ptr)
-//				break;	
-//		}
-//	}
-//}
-
 /***************************************************************************************************************************************
 *	FUNCTION:	This function deletes an element from the BST.
 *	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val to delete.
@@ -211,30 +200,85 @@ NODE *findLargestElement(NODE *tree)
 NODE *deleteElement(NODE *tree, int val)
 {
 	if(tree == NULL)
-		printf("Value not found");
+		return tree;
 	else 
 	if(val < tree->data)
-		deleteElement(tree->left, val);
+		tree->left = deleteElement(tree->left, val);
 	else
 	if(val > tree->data)
-		deleteElement(tree->right, val);
-	else
-	if(tree->left && tree->right)
-	{
-		NODE *temp = findLargestElement(tree->left);
-		tree->data = temp->data;
-		deleteElement(tree->left, temp->data);
-	}
+		tree->right = deleteElement(tree->right, val);
 	else
 	{
-		NODE *temp = tree;
+		/*When node has no child*/
 		if(tree->left == NULL && tree->right == NULL)
+		{
+			free(tree);
 			tree = NULL;
+		}
 		else
-		if(tree->left != NULL)
-			tree = tree->left;
-		else
+		/*When node has one child*/
+		if(tree->left == NULL)
+		{
+			NODE *temp = tree;
 			tree = tree->right;
-		free(temp);
+			free(temp);
+		}
+		else
+		if(tree->right == NULL)
+		{
+			NODE *temp = tree;
+			tree = tree->left;
+			free(temp);
+		}
+		/*When node has two childs*/
+		else
+		{
+			NODE *temp = findSmallestElement(tree->right);
+			tree->data = temp->data;
+			tree->right = deleteElement(tree->right, temp->data);
+		}
 	}
+	return tree;
 }
+
+/***************************************************************************************************************************************
+*	FUNCTION:	This function counts total number of nodes in BST.
+*	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
+*	OUTPUT:		This function returns number of nodes in BST.
+***************************************************************************************************************************************/
+int countTotalNodes(NODE *tree)
+{
+	if(tree == NULL)
+		return 0;
+	else
+		return (countTotalNodes(tree->left) + countTotalNodes(tree->right) + 1);
+}
+
+/***************************************************************************************************************************************
+*	FUNCTION:	This function counts total number of internal nodes in BST.
+*	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
+*	OUTPUT:		This function returns number of internal nodes in BST.
+***************************************************************************************************************************************/
+int countInternalNodes(NODE *tree)
+{
+	if(tree == NULL || (tree->left == NULL && tree->right == NULL))
+		return 0;
+	else
+		return (countInternalNodes(tree->left) + countInternalNodes(tree->right) + 1);
+}
+
+/***************************************************************************************************************************************
+*	FUNCTION:	This function counts total number of external nodes in BST.
+*	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
+*	OUTPUT:		This function returns number of external nodes in BST.
+***************************************************************************************************************************************/
+int countExternalNodes(NODE *tree)
+{
+	if(tree == NULL)
+		return 0;
+	if(tree->left == NULL && tree->right == NULL)
+		return 1;
+	else
+		return (countExternalNodes(tree->left) + countExternalNodes(tree->right));
+}
+
