@@ -1,8 +1,36 @@
-# Data-Structures-using-C
-Data Structures implementation using C
+# **Data Structures**
 
-1. Linked List implementation and operations in list like insertion, deletion and traversing with one application i.e. polynomial representation using linked list.
+> Data structures are used to store, manage and access data quickly and efficiently.
 
-2. Stacks implementation using array and linked list with basic stacks operations like pop, push and peek with several applications like reversing a list, expression validator, prefix to postfix and vice versa, prefix and postfix expression evaluation.
+## Data Structures _currently_ implemented in this repository _using C_:-
 
-3. Binary Search Tree implementation with operations on BST like insertion, traversal, deletion, etc.
+- **LINKED LIST:** Linked list is implemented with operations like:
+  - Insertion
+  - Deletion
+  - Traversing
+  
+  With one application i.e. polynomial representation using linked list.
+
+- **STACK:** Stack is implemented using array and linked list with basic stacks operations like:
+  - Pop
+  - Push
+  - Peek 
+  
+  With several applications like:
+  - Reversing a list
+  - Expression validator
+  - Prefix to postfix and vice versa
+  - Prefix and postfix expression evaluation
+
+- **QUEUE:** Queue is implemented using array and linked list with basic queue operations like:
+  - Insertion
+  - Deletion
+  - Peek
+  - Display.
+
+- **BINARY SEARCH TREE:** BST is implemented with operations like:
+  - Insertion
+  - Traversal(pre-order, in-order and post-order)
+  - Deletion
+  - Finding smallest and largest element
+  - Counting number of total, internal and external nodes
