@@ -23,9 +23,9 @@ NODE* insertElement(NODE *, int);
 void preorderTraversal(NODE *);
 void inorderTraversal(NODE *);
 void postorderTraversal(NODE *);
-NODE *findSmallestElement(NODE *);
-NODE *findLargestElement(NODE *);
-NODE *deleteElement(NODE *, int);
+NODE* findSmallestElement(NODE *);
+NODE* findLargestElement(NODE *);
+NODE* deleteElement(NODE *, int);
 int countTotalNodes(NODE *);
 int countInternalNodes(NODE *);
 int countExternalNodes(NODE *);
@@ -184,7 +184,7 @@ NODE *findSmallestElement(NODE *tree)
 *	INPUT:		This function takes one parameter i.e., a pointer of type NODE pointing to root of BST.
 *	OUTPUT:		This function returns pointer of type NODE pointing to the node of the largest element of BST.
 ***************************************************************************************************************************************/
-NODE *findLargestElement(NODE *tree)
+NODE* findLargestElement(NODE *tree)
 {
 	if(tree == NULL || tree->right == NULL)
 		return tree;
@@ -197,7 +197,7 @@ NODE *findLargestElement(NODE *tree)
 *	INPUT:		This function takes two parameters i.e., a pointer of type NODE pointing to root of BST and an integer val to delete.
 *	OUTPUT:		This function returns pointer of type NODE pointing to root of the BST.
 ***************************************************************************************************************************************/
-NODE *deleteElement(NODE *tree, int val)
+NODE* deleteElement(NODE *tree, int val)
 {
 	if(tree == NULL)
 		return tree;
